@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</titled>
+</head>
+<body>
+    <script>
+        // Rock Paper Scissors
+
+        // Create an integer variable, playerScore, with an initial value of 0 to hold the Player's current score.
+        // Create an integer variable, computerScore, with an initial value of 0 to hold the Computer's current score.
+        // Create an integer variable, roundNumber, with an initial value of 1 to hold the current round number.
+
+        // Define a function, computerPlay(), which asks the computer to select Rock, Paper, or Scissors.
+            // Print a message to the console that asks the computer for its selection.
+            // Generate a random number from 1 to 3. 
+            // Wait a few seconds, then print a message to the console stating that the computer has made its choice.
+            // Return the computer's choice. 
+
+        // Define a function, playerPlay(), that accepts no parameters, prompts the player for a numeric input to choose Rock, Paper, or Scissors, and returns the result.
+            // Print a message to the console asking the user to input "1" for Rock, "2" for Paper, or "3" for Scissors.
+            // Store the result in the variable "playerSelection".
+            // Validate the playerSelection.
+                // If the input is not an integer from 1-3, ask for numerical input again.
+
+        // Define a function translateSelection() that accepts the numeric parameter, selection, and outputs a corresponding choice of Rock, Paper, or Scissors.
+            // If the selection is 1, return "Rock".
+            // If the selection is 2, return "Paper".
+            // If the selection is 3, return "Scissors".
+
+        // Define a function, printChoices(), which accepts the parameters playerSelection and computerSelection, and outputs the Player and Computer selections to the console.
+            // Pass playerSelection to the function translateSelection() and assign the result to the variable playerChoice.
+            // Pass computerSelection to the function translateSelection() and assign the result to the variable computerChoice. 
+            // Print the message "The computer chose <computerChoice>." to the console.
+            // Print the message "You chose <playerChoice>." to the console.
+
+        // Define a function, getRoundResult(), which accepts the parameters playerSelecton and computerSelection, and returns a string explaining the result of the round.
+            // Pass playerSelection to the function translateSelection() and assign the result to the variable playerChoice.
+            // Pass computerSelection to the function translateSelection() and assign the result to the variable computerChoice. 
+            // If playerSelection and computerSelection are equal, return "You both chose <playerSelection>".
+            // If the value of playerSelection is "1" and computerSelection is "2", or if playerSelection is "2" and computerSelection is "1", return "Paper beats Rock".
+            // If the value of playerSelection is "2" and computer selection is "3", or if playerSelection is "3" and computer selection is "2", return "Rock beats Scissors".
+            // If the value of playerSelection is "3" and computerSelection is "1", or if playerSelection is "1" and computerSelection is "3", return "Scissors beats Rock."
+
+        // Define a function, printRoundResult(), that accepts the parameter roundResult, and ouputs a message to the screen explaining the result.
+            // Print roundResult to the console.
+
+        // Define a function, getRoundWinner(), that accepts the parameters playerSelection and computerSelection, and returns the winner for the round.
+            // If both parameters have the same value, return "0" for Tie.
+            // If the Player enters "Rock" and the computer enters "Paper", 
+                // Or if the Player enters "Paper" and the Computer enters "Scissors",
+                // Or if the Player enters "Scissors" and the Computer enters "Rock",
+                // return "1" for Computer.
+            // Otherwise, return "2" for Player.
+
+        // Define a function, printRoundWinner(), that accepts an integer parameter, roundWinner, and prints a message to the screen stating who won the round.
+            // If roundWinner is "0", print "This round was a tie!"
+            // If roundWinner is "1", print "The computer won this round!"
+            // If roundwinner is "2", print "You won this round!"
+
+        // Define a function, calculateScore(), that accepts the parameter roundWinner, and returns the current score.
+            // If the winner of the round is Computer, increment the variable computerScore by 1.
+            // If the winner of the round is Player, increment the variable playerScore by 1.
+
+        // Define the function printScore(), which accepts the parameters computerScore and playerScore, and outputs the current score to the console.
+            // Print a neatly formatted message to the console.
+            // =====================
+            // |   ROUND 3 SCORE   |
+            // =====================
+            // |  CPU    |    P1   |
+            // ---------------------
+            // |   1     |     2   |
+            // ---------------------  
+
+        // Define the function declareWinner(), which accepts the parameters computerScore and playerScore, and prints the final result of the match.
+            // If computerScore is equal to playerScore, print "This match ended in a tie!".
+            // If computerScore is greater than playerScore, print "The computer won this match!".
+            // If computerScore is less than playerScore, print "You won this match!".
+
+        // Define a function, playGame(), that accepts no parameters and runs the game.
+
+            // While roundNumber is less than or equal to 5, playerScore is less than 3, and computerScore is less than 3: 
+
+                // Assign a variable, computerSelection, to the result of the function computerPlay(), which accepts no parameters, and asks the computer to select Rock, Paper, or Scissors.
+                
+                // Assign a variable, playerSelection, to the result of the function playerPlay(), which accepts no parameters, and prompts the player for a numeric input to choose Rock, Paper, or Scissors.
+
+                // Call the function printChoices(), which accepts the parameters playerSelection and computerSelection, and outputs the Player and Computer selections to the screen.
+
+                // Call the function printRoundResult(), which accepts the parameters playerSelection and computerSelection, and ouputs a message to the screen explaining the result.
+
+                // Call the function, printRoundWinner(), passing the function getRoundWinner() to the parameter roundWinner.
+                
+                // Call the function calculateScore(), passing the function getRoundWinner() as the argument for the parameter roundWinner.
+
+                // Call the function printScore(), passing the variables computerScore and playerScore to the parameters computerScore and playerScore.
+                // If either score is 3 or higher at the end of the round, call the function declareWinner(), which accepts the parameters computerScore and playerScore, and outputs a message declaring that the player with the higher score is the winner.
+            
+            // Call the function declareWinner(), passing the variables computerScore and playerScore to the parameters.
+
+        // Call the function playGame().
+
+    </script>
+</body>
+</html>
