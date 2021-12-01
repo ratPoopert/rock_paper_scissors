@@ -8,46 +8,35 @@
 </head>
 <body>
     <script>
-        // Rock Paper Scissors
 
-        // Define a function, playGame(), that accepts no parameters and runs the game.
         function playGame() {
 
-            // Create an integer variable, playerScore, with an initial value of 0 to hold the Player's current score.
+            // Define variables and initial values.
             let playerScore = 0;
-            
-            // Create an integer variable, computerScore, with an initial value of 0 to hold the Computer's current score.
             let computerScore = 0;
-
-            // Create an integer variable, roundNumber, with an initial value of 1 to hold the current round number.
             let roundNumber = 1;
 
-            // Define a function, computerPlay(), which asks the computer to select Rock, Paper, or Scissors.
             function computerPlay() {
-                // Print a message to the console that asks the computer for its selection.
                 console.log("Computer, please choose Rock, Paper, or Scissors: ");
-                
-                // Generate a random number from 1 to 3 and assign its value to the variable computerSelection.
+
+                // Randomly sets the computer's selection to an integer from 1-3.
                 let computerSelection = Math.floor(Math.random() * 3) + 1;
 
-                // Wait a few seconds, then print a message to the console stating that the computer has made its choice.
-                setTimeout(console.log("The computer has made its choice!"), 2000);
-                // console.log("The computer has made its choice!")
-
-                // Return the computer's selection. 
+                console.log("The computer has made its choice!");
                 return computerSelection;
             }
 
-            // Define a function, playerPlay(), that accepts no parameters, prompts the player for a numeric input to choose Rock, Paper, or Scissors, and returns the result.
             function playerPlay() {
                 let playerSelection;
+
+                // Holds a regular expression that tests for testing user input (1-3 or q). 
                 let validExpression = /^[1-3q]$/;
                 
-                // Prompt the user for input. If the input doesn't pass a validation check, prompt for input again.
                 do {
-                    playerSelection = prompt("Please enter 1 for Rock, 2 for Paper, or 3 for Scissors");
+                    playerSelection = prompt("Please enter 1 for Rock, 2 for Paper, or 3 for Scissors\nEnter q to quit.");
                 } while (!validExpression.test(playerSelection))
 
+                // Makes sure the user's input is returned as a string if they enter the quit character.
                 if (playerSelection !== "q") {
                     playerSelection = parseInt(playerSelection);
                 }
@@ -55,126 +44,92 @@
                 return playerSelection;
             }
 
-            // Define a function translateSelection() that accepts the numeric parameter, selection, and outputs a corresponding choice of Rock, Paper, or Scissors.
             function translateSelection(selection) {
                 switch (selection) {
-                    // If the selection is 1, return "Rock".
                     case 1 : 
                         return "Rock";
                         break;
-                    // If the selection is 2, return "Paper".
                     case 2 : 
                         return "Paper";
                         break;
-                    // If the selection is 3, return "Scissors".
                     case 3 : 
                         return "Scissors";
                         break;
                 }
             }
 
-            // Define a function, printChoices(), which accepts the parameters playerSelection and computerSelection, and outputs the Player and Computer selections to the console.
             function printChoices(computerSelection, playerSelection) {
-                // Pass computerSelection to the function translateSelection() and assign the result to the variable computerChoice. 
-                computerChoice = translateSelection(computerSelection);
-                // Pass playerSelection to the function translateSelection() and assign the result to the variable playerChoice.
-                playerChoice = translateSelection(playerSelection);
-                // Print the message "The computer chose <computerChoice>." to the console.
-                console.log(`The computer chose ${computerChoice}.`);
-                // Print the message "You chose <playerChoice>." to the console.
-                console.log(`You chose ${playerChoice}.`)
+                console.log(`You chose ${translateSelection(playerSelection)}.`);
+                console.log(`The computer chose ${translateSelection(computerSelection)}.`);
             }
 
-            // Define a function, getRoundResult(), which accepts the parameters playerSelecton and computerSelection, and returns a string explaining the result of the round.
             function getRoundResult(computerSelection, playerSelection){
-                // Pass computerSelection to the function translateSelection() and assign the result to the variable computerChoice. 
-                computerChoice = translateSelection(computerSelection);
-                // Pass playerSelection to the function translateSelection() and assign the result to the variable playerChoice.
-                playerChoice = translateSelection(playerSelection);
-                // If playerSelection and computerSelection are equal, return "You both chose <playerChoice>".
-                if (playerSelection === computerSelection) {
-                    return `You both chose ${playerChoice}.`;
-                // If the value of playerSelection is "1" and computerSelection is "2", or if playerSelection is "2" and computerSelection is "1", return "Paper beats Rock".
-                } else if ((playerSelection === 1 && computerSelection === 2) || (playerSelection === 2 && computerSelection === 1)) {
+                let pS = playerSelection;
+                let cS = computerSelection;
+                if (pS === cS) {
+                    return `You both chose ${translateSelection(pS)}.`;
+                } else if ((pS === 1 && cS === 2) || (pS === 2 && cS === 1)) {
                     return "Paper beats Rock.";
-                // If the value of playerSelection is "2" and computer selection is "3", or if playerSelection is "3" and computer selection is "2", return "Rock beats Scissors".
-                } else if ((playerSelection === 2 && computerSelection === 3) || (playerSelection === 2 && computerSelection === 3)) {
+                } else if ((pS === 2 && cS === 3) || (pS === 2 && cS === 3)) {
                     return "Scissors beats Paper.";
-                // If the value of playerSelection is "3" and computerSelection is "1", or if playerSelection is "1" and computerSelection is "3", return "Scissors beats Paper."
                 } else {
-                    return "Scissors beats Rock.";
+                    return "Rock beats Scissors.";
                 }
             }
 
-            // Define a function, printRoundResult(), that accepts the parameter roundResult, and ouputs a message to the screen explaining the result.
             function printRoundResult(roundResult) {
-                // Print roundResult to the console.
                 console.log(roundResult);
             }
 
-            // Define a function, getRoundWinner(), that accepts the parameters playerSelection and computerSelection, and returns the winner for the round.
             function getRoundWinner(computerSelection, playerSelection) {
-                computerChoice = translateSelection(computerSelection);
-                playerChoice = translateSelection(playerSelection);
-                // If both parameters have the same value, return "0" for Tie.
-                if (computerChoice === playerChoice) return 0;
-                // If the Player enters "Rock" and the computer enters "Paper",
-                // Or if the Player enters "Paper" and the Computer enters "Scissors",
-                // Or if the Player enters "Scissors" and the Computer enters "Rock",
-                // return "1" for Computer.
-                else if (
+                let computerChoice = translateSelection(computerSelection);
+                let playerChoice = translateSelection(playerSelection);
+
+                if (computerChoice === playerChoice) {
+                    return 0; // The outcome is a tie.
+
+                } else if (
                     (computerChoice === "Paper" && playerChoice === "Rock") ||
                     (computerChoice === "Scissors" && playerChoice === "Paper") ||
                     (computerChoice === "Rock" && playerChoice === "Scissors")
                     ) {
-                    return 1;
-                // Otherwise, return "2" for Player.
+                    return 1; // The computer wins.
                 } else {
-                    return 2;
+                    return 2; // The player wins.
                 }
             }
 
-            // Define a function, printRoundWinner(), that accepts an integer parameter, roundWinner, and prints a message to the screen stating who won the round.
             function printRoundWinner(roundWinner) {
                 switch (roundWinner) {
-                // If roundWinner is "0", print "This round was a tie!"
                 case 0: 
                     console.log("This round was a tie!");
                     break;
-                // If roundWinner is "1", print "The computer won this round!"
                 case 1:
                     console.log("The computer won this round!");
                     break;
-                // If roundwinner is "2", print "You won this round!"
                 case 2:
                     console.log("You won this round!");
                     break;
                 }
             }
 
-            // Define a function, calculateScore(), that accepts the parameter roundWinner, and returns the current score.
             function calculateScore(roundWinner) {
                 switch(roundWinner) {
-                    // If the winner of the round is Computer, increment the variable computerScore by 1.
                     case 1:
                         ++computerScore;
                         break;
-                    
-                    // If the winner of the round is Player, increment the variable playerScore by 1.
                     case 2:
                         ++playerScore;
                         break;
                 }
             }
 
-            // Define the function printScore(), which accepts the parameters computerScore and playerScore, and outputs the current score to the console.
             function printScore(computerScore, playerScore) {
             // Print a neatly formatted message to the console.
                 // =====================
                 // |   ROUND 3 SCORE   |
                 // =====================
                 // |  CPU    |    P1   |
-                // ---------------------
                 // |   1     |     2   |
                 // ---------------------  
                 console.log("=====================");
@@ -185,7 +140,6 @@
                 console.log("---------------------");
             }
 
-            // Define the function declareWinner(), which accepts the parameters computerScore and playerScore, and prints the final result of the match.
             function declareWinner(computerScore, playerScore) {
                 if (computerScore === playerScore) {
                     alert("This match ended in a tie!");
@@ -195,45 +149,32 @@
                     alert("You won this match!");
                 }
             }
-            // If computerScore is equal to playerScore, print "This match ended in a tie!".
-            // If computerScore is greater than playerScore, print "The computer won this match!".
-            // If computerScore is less than playerScore, print "You won this match!".
 
-            // While roundNumber is less than or equal to 5, playerScore is less than 3, and computerScore is less than 3:
+            // Keeps the game running until one player has three wins.
             while (playerScore < 3 && computerScore < 3) {
+
                 console.log(`\n\n ### ROUND ${roundNumber} ###`);
-                // Assign a variable, computerSelection, to the result of the function computerPlay(), which accepts no parameters, and asks the computer to select Rock, Paper, or Scissors.
+
                 computerSelection = computerPlay();
-                
-                // Assign a variable, playerSelection, to the result of the function playerPlay(), which accepts no parameters, and prompts the player for a numeric input to choose Rock, Paper, or Scissors.
                 playerSelection = playerPlay();
 
                 if (playerSelection == "q") {
-                    return false;
+                    return false; // Triggers the end of the game.
                 }
 
-                // Call the function printChoices(), which accepts the parameters playerSelection and computerSelection, and outputs the Player and Computer selections to the screen.
                 printChoices(computerSelection, playerSelection);
-
-                // Call the function printRoundResult(), which accepts the parameters playerSelection and computerSelection, and ouputs a message to the screen explaining the result.
                 printRoundResult(getRoundResult(computerSelection, playerSelection));
-
-                // Call the function, printRoundWinner(), passing the function getRoundWinner() to the parameter roundWinner.
                 printRoundWinner(getRoundWinner(computerSelection, playerSelection));
                 
-                // Call the function calculateScore(), passing the function getRoundWinner() as the argument for the parameter roundWinner.
                 calculateScore(getRoundWinner(computerSelection, playerSelection));
-
-                // Call the function printScore(), passing the variables computerScore and playerScore to the parameters computerScore and playerScore.
                 printScore(computerScore, playerScore);
 
-                // Increment the roundNumber variable by one.
                 ++roundNumber;
             }
 
-            // Call the function declareWinner(), passing the variables computerScore and playerScore to the parameters.
             declareWinner(computerScore, playerScore);
-            console.clear();
+            
+            // Keep the game running and start a new match.
             return true;
         }
 
