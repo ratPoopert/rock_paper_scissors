@@ -9,26 +9,49 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 id="title">Rock Paper Scissors</h1>
-    <div id="player-buttons">
-        <ul id="rules">
+    <h1 id="title" class="title">Rock Paper Scissors</h1>
+    <div id="endgame-info" class="endgame-info">
+        <p id="match-result" 
+                class="endgame-info endgame-info__match-result" 
+                hidden></p>
+        <button id="reset-button" 
+                class="endgame-info endgame-info__reset-button" 
+                hidden>
+            Play Again
+        </button>
+    </div>
+    <div id="player-ui" class="player-ui">
+        <ul id="rules" class="player-ui player-ui__rules">
             <li>Rock beats Scissors</li>
             <li>Paper beats Rock</li>
             <li>Scissors beats Paper</li>
         </ul>
-        <h2 id="instructions">Choose your weapon!</h2>
-        <button id="rock-button" value="Rock">Rock</button>
-        <button id="paper-button" value="Paper">Paper</button>
-        <button id="scissors-button" value="Scissors">Scissors</button>
+        <h2 id="instructions" 
+                class="player-ui player-ui__instructions">
+            Choose your weapon!
+        </h2>
+        <div id="player-buttons" class="player-ui__buttons">
+            <button id="rock-button" 
+                    class="player-ui__button" 
+                    value="Rock">Rock</button>
+            <button id="paper-button"
+                    class="player-ui__button"
+                    value="Paper">Paper</button>
+            <button id="scissors-button" 
+                    class="player-ui__button" 
+                    value="Scissors">Scissors</button>
+        </div>
     </div>
-    <div id="game-info" hidden>
-        <p id="match-counter"></p>
-        <p id="round-counter"></p>
-        <p id="player-score"></p>
-        <p id="computer-score"></p>
-        <pre id="round-result-info"></pre>
+    <div id="game-info" class="game-info" hidden>
+        <div id="counters" class="game-info__counters">
+            <p id="match-counter" class="game-info__match-counter"></p>
+            <p id="round-counter" class="game-info__round-counter"></p>
+        </div>
+        <div id="scores" class="game-info__scores">
+            <p id="player-score" class="game-info__player-score"></p>
+            <p id="computer-score" class="game-info__computer-score"></p>
+        </div>
+        <pre id="round-result" class="game-info__round-result"></pre>
     </div>
-    <p id="match-result" hidden></p>
-        <button id="reset-button" hidden>Play Again</button>
 </body>
 </html>

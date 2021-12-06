@@ -12,10 +12,11 @@ const $matchResult = document.getElementById('match-result');
 const $paperButton = document.getElementById('paper-button');
 const $playerButtons = document.getElementById('player-buttons');
 const $playerScore = document.getElementById('player-score');
+const $playerUI = document.getElementById('player-ui');
 const $resetButton = document.getElementById('reset-button');
 const $rockButton = document.getElementById('rock-button');
 const $roundCounter = document.getElementById('round-counter');
-const $roundResultInfo = document.getElementById('round-result-info');
+const $roundResult = document.getElementById('round-result');
 const $scissorsButton = document.getElementById('scissors-button');
 
 // Event listeners
@@ -30,7 +31,7 @@ $resetButton.addEventListener('click', () => {
     $gameInfo.hidden = true;
     $resetButton.hidden = true;
     $matchResult.hidden = true;
-    $playerButtons.hidden = false;
+    $playerUI.hidden = false;
 });
 
 function handleClick (e) {
@@ -53,7 +54,7 @@ function handleClick (e) {
     $roundCounter.textContent = `Round number: ${roundNumber}`;
     $playerScore.textContent = `Player score: ${playerScore}`;
     $computerScore.textContent = `Computer score: ${computerScore}`;
-    $roundResultInfo.textContent = roundResult;
+    $roundResult.textContent = roundResult;
 
     $gameInfo.hidden = false;
 
@@ -62,7 +63,8 @@ function handleClick (e) {
         const matchResult = getMatchResult(matchWinner);
         $matchResult.textContent = matchResult;
         $matchResult.hidden = false;
-        $playerButtons.hidden = true;
+        $playerUI.hidden = true;
+        $roundResult.hidden = true;
         $resetButton.hidden = false;
         ++matchNumber;
         roundNumber = 0;

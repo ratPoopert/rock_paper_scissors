@@ -3,9 +3,109 @@ html {
 }
 
 body {
-    font-size: 1.6rem;
+    background-color: black;
+    color: white;
+    font-size: 1.8rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    border-radius: 0.5em;
 }
 
 pre {
     font: inherit;
+}
+
+.endgame-info {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.endgame-info__match-result {
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+
+.endgame-info__reset-button {
+    font-size: 2.4rem;
+    padding: 0.5em 1em;
+}
+
+.game-info {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.game-info__counters {
+    font-size: 2.4rem;
+    font-weight: 700;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+}
+
+.game-info__round-result {
+    align-self: center;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.game-info__scores {
+    display: flex;
+    font-size: 2.0rem;
+    font-weight: 600;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+}
+
+.player-ui {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.player-ui__buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.player-ui__button {
+    font-size: 2.4rem;
+    padding: 0.5em 1em;
+}
+
+.player-ui__rules {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.title {
+    font-size: 4.8rem;
+    font-weight: 700;
+}
+
+[hidden] {
+    display: none;
 }
