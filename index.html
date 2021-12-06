@@ -5,183 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script>
-
-        function playGame() {
-
-            // Define variables and initial values.
-            let playerScore = 0;
-            let computerScore = 0;
-            let roundNumber = 1;
-
-            function computerPlay() {
-                console.log("Computer, please choose Rock, Paper, or Scissors: ");
-
-                // Randomly sets the computer's selection to an integer from 1-3.
-                let computerSelection = Math.floor(Math.random() * 3) + 1;
-
-                console.log("The computer has made its choice!");
-                return computerSelection;
-            }
-
-            function playerPlay() {
-                let playerSelection;
-
-                // Holds a regular expression that tests for testing user input (1-3 or q). 
-                let validExpression = /^[1-3q]$/;
-                
-                do {
-                    playerSelection = prompt("Please enter 1 for Rock, 2 for Paper, or 3 for Scissors\nEnter q to quit.");
-                } while (!validExpression.test(playerSelection))
-
-                // Makes sure the user's input is returned as a string if they enter the quit character.
-                if (playerSelection !== "q") {
-                    playerSelection = parseInt(playerSelection);
-                }
-
-                return playerSelection;
-            }
-
-            function translateSelection(selection) {
-                switch (selection) {
-                    case 1 : 
-                        return "Rock";
-                        break;
-                    case 2 : 
-                        return "Paper";
-                        break;
-                    case 3 : 
-                        return "Scissors";
-                        break;
-                }
-            }
-
-            function printChoices(computerSelection, playerSelection) {
-                console.log(`You chose ${translateSelection(playerSelection)}.`);
-                console.log(`The computer chose ${translateSelection(computerSelection)}.`);
-            }
-
-            function getRoundResult(computerSelection, playerSelection){
-                let pS = playerSelection;
-                let cS = computerSelection;
-                if (pS === cS) {
-                    return `You both chose ${translateSelection(pS)}.`;
-                } else if ((pS === 1 && cS === 2) || (pS === 2 && cS === 1)) {
-                    return "Paper beats Rock.";
-                } else if ((pS === 2 && cS === 3) || (pS === 2 && cS === 3)) {
-                    return "Scissors beats Paper.";
-                } else {
-                    return "Rock beats Scissors.";
-                }
-            }
-
-            function printRoundResult(roundResult) {
-                console.log(roundResult);
-            }
-
-            function getRoundWinner(computerSelection, playerSelection) {
-                let computerChoice = translateSelection(computerSelection);
-                let playerChoice = translateSelection(playerSelection);
-
-                if (computerChoice === playerChoice) {
-                    return 0; // The outcome is a tie.
-
-                } else if (
-                    (computerChoice === "Paper" && playerChoice === "Rock") ||
-                    (computerChoice === "Scissors" && playerChoice === "Paper") ||
-                    (computerChoice === "Rock" && playerChoice === "Scissors")
-                    ) {
-                    return 1; // The computer wins.
-                } else {
-                    return 2; // The player wins.
-                }
-            }
-
-            function printRoundWinner(roundWinner) {
-                switch (roundWinner) {
-                case 0: 
-                    console.log("This round was a tie!");
-                    break;
-                case 1:
-                    console.log("The computer won this round!");
-                    break;
-                case 2:
-                    console.log("You won this round!");
-                    break;
-                }
-            }
-
-            function calculateScore(roundWinner) {
-                switch(roundWinner) {
-                    case 1:
-                        ++computerScore;
-                        break;
-                    case 2:
-                        ++playerScore;
-                        break;
-                }
-            }
-
-            function printScore(computerScore, playerScore) {
-            // Print a neatly formatted message to the console.
-                // =====================
-                // |   ROUND 3 SCORE   |
-                // =====================
-                // |  CPU    |    P1   |
-                // |   1     |     2   |
-                // ---------------------  
-                console.log("=====================");
-                console.log(`|   ROUND ${roundNumber} SCORE   |`);
-                console.log("=====================");
-                console.log("|  CPU    |    P1   |");
-                console.log(`|   ${computerScore}     |     ${playerScore}   |`);
-                console.log("---------------------");
-            }
-
-            function declareWinner(computerScore, playerScore) {
-                if (computerScore === playerScore) {
-                    alert("This match ended in a tie!");
-                } else if (computerScore > playerScore) {
-                    alert("The computer won this match!");
-                } else {
-                    alert("You won this match!");
-                }
-            }
-
-            // Keeps the game running until one player has three wins.
-            while (playerScore < 3 && computerScore < 3) {
-
-                console.log(`\n\n ### ROUND ${roundNumber} ###`);
-
-                computerSelection = computerPlay();
-                playerSelection = playerPlay();
-
-                if (playerSelection == "q") {
-                    return false; // Triggers the end of the game.
-                }
-
-                printChoices(computerSelection, playerSelection);
-                printRoundResult(getRoundResult(computerSelection, playerSelection));
-                printRoundWinner(getRoundWinner(computerSelection, playerSelection));
-                
-                calculateScore(getRoundWinner(computerSelection, playerSelection));
-                printScore(computerScore, playerScore);
-
-                ++roundNumber;
-            }
-
-            declareWinner(computerScore, playerScore);
-            
-            // Keep the game running and start a new match.
-            return true;
-        }
-
-        // Kudos to @willrowe for pointing out that, because the playGame() function didn't return anything in v1.0, it could be used as the condition in the while loop that runs the game. Per his suggestion, I also moved all function and variable declarations into playGame() to improve encapsulation. As an added bonus, I no longer need to reset the intial variables in the while loop when starting another round.
-        while (playGame()) {
-            console.clear();
-        }   
-    </script>
+    <h1 id="title">Rock Paper Scissors</h1>
+    <div id="player-buttons">
+        <ul id="rules">
+            <li>Rock beats Scissors</li>
+            <li>Paper beats Rock</li>
+            <li>Scissors beats Paper</li>
+        </ul>
+        <h2 id="instructions">Choose your weapon!</h2>
+        <button id="rock-button" value="Rock">Rock</button>
+        <button id="paper-button" value="Paper">Paper</button>
+        <button id="scissors-button" value="Scissors">Scissors</button>
+    </div>
+    <div id="game-info" hidden>
+        <p id="match-counter"></p>
+        <p id="round-counter"></p>
+        <p id="player-score"></p>
+        <p id="computer-score"></p>
+        <pre id="round-result-info"></pre>
+    </div>
+    <p id="match-result" hidden></p>
+        <button id="reset-button" hidden>Play Again</button>
 </body>
 </html>
